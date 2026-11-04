@@ -103,22 +103,25 @@
 
 **Acceptance:** Phase order and completion evidence are visible in one roadmap, and the decision index distinguishes pending research from accepted decisions.
 
-## Task 3: Open and maintain the Phase 0 tracking issue
+## Task 3: Seed and maintain the issue sequence for every planned phase
 
 **Files:**
-- Create: GitHub issue `Phase 0: Logos Android feasibility audit`
-- Modify: `docs/roadmap.md` with the created issue URL.
+- Track: GitHub issues #2–#5 for Phases 0–3.
+- Modify: `docs/roadmap.md` with each phase issue URL and dependency.
 
 **Interfaces:**
-- Consumes: Merged Task 1 issue template and Task 2 roadmap, plus the approved Phase 0 exit criteria.
-- Produces: The GitHub issue that owns the audit checklist and records its PR evidence.
+- Consumes: The approved phase scope, Task 1's issue/PR conventions, and Task 2's roadmap.
+- Produces: One issue per engineering phase, with checklist, dependencies, exit criteria, and linked PR evidence.
 
-- [ ] **Step 1: Create the Phase 0 issue from the repository issue form.** Title it `Phase 0: Logos Android feasibility audit`; include scope, dependencies, every deliverable from Tasks 4–6, acceptance criteria, and the rule that no broad implementation starts before review.
-- [ ] **Step 2: Link the issue in the roadmap.** Replace the initial issue-not-created status for Phase 0 with the live issue URL; leave future phase issues uncreated until their scope is ready. Submit this edit in a focused PR linked to the new Phase 0 issue.
-- [ ] **Step 3: Use focused PRs against the issue.** Keep governance setup separate from research outputs where useful; link every audit PR to the Phase 0 issue and preserve the evidence checklist in the PR.
-- [ ] **Step 4: Close Phase 0 only after review.** Verify each acceptance criterion against merged documentation and recorded experiments, then update the roadmap and issue with the final feasibility decision and the approved next planning action.
+- [x] **Step 1: Create the Phase 0 issue.** Issue #2 tracks repository foundation work and the feasibility audit, with status, checklist, acceptance criteria, and review requirements.
+- [x] **Step 2: Create the Phase 1 Rust foundation issue.** Issue #3 records the workspace, profiler, resource budget, role assessment, lifecycle, tests, and documentation scope; it is blocked by completion of #2.
+- [x] **Step 3: Create the Phase 2 Android execution issue.** Issue #4 records Android ARM64 build, minimal app integration, lifecycle recovery, and persistence; it is blocked by #2 and #3.
+- [x] **Step 4: Create the Phase 3 Logos integration issue.** Issue #5 records actual runtime/module loading, local execution, conditional blockchain verification, resilience, and resource measurements; it is blocked by #2 and #4.
+- [ ] **Step 5: Link all four issue URLs and dependencies in the roadmap.** Add the URLs for #2–#5 after Task 2 creates `docs/roadmap.md`; submit the roadmap edit as a PR linked to #2.
+- [ ] **Step 6: Work one phase at a time through linked PRs.** Each PR references its phase issue, checks only completed items with evidence, and remains within that issue's scope. Do not start a blocked phase.
+- [ ] **Step 7: Close each phase issue only after review.** Verify its acceptance criteria against merged changes and recorded experiments, then update the roadmap and issue with the outcome and next eligible phase.
 
-**Acceptance:** Phase 0 has one authoritative issue with a complete checklist, the roadmap links to it, and completion requires reviewed evidence rather than a status-only update.
+**Acceptance:** Phases 0–3 each have an issue before work starts; dependencies prevent out-of-order work; every PR links to an issue; and phase completion requires reviewed evidence.
 
 ## Task 4: Map official Logos repositories and build dependencies
 
