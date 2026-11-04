@@ -15,7 +15,7 @@ Snapshot date: 2026-11-04. Primary source is [`logos-liblogos` revision `af19e51
 
 ## Version and provenance snapshot
 
-These are immutable Git revisions selected by the liblogos lockfile, not semver releases:
+These are immutable Git revisions selected directly by the root node of the liblogos lockfile, not semver releases. This avoids confusing root-selected inputs with duplicate nested lock nodes that can point at other revisions.
 
 | Input | Revision |
 |---|---|
@@ -23,18 +23,24 @@ These are immutable Git revisions selected by the liblogos lockfile, not semver 
 | `default-module-loader` (`logos-module-loader-qt`) | `3eee855362c238052eb66833ec14782c9ab2d07e` |
 | `logos-container` | `641d21108781a353eed9f0567f15776fee06af40` |
 | `logos-module-loader` | `3628b97a32cb2edb30e7d26c0c5113a487e3e993` |
-| `logos-cpp-sdk` | `3f34c0b216c8fbdbf2093056b9f0fc53d89f05a1` |
-| `logos-qt-sdk` | `03e489b16f9401526e52c0fdbc1e72cbf9fb1144` |
-| `logos-protocol` | `8bbc027c99505c3c2f043265f8c1ae8ff899bdff` |
-| `logos-plugin-qt` | `3a471be14af66d099827ee712ec8c40ead701340` |
-| `logos-package-manager` | `d3af2972f51d9c542537d80d60ad8d20282ddcd1` |
-| `logos-module` | `9812dc8c69cfbfed3eea06510a5c1ff33c1fcf7f` |
+| `logos-capability-module` | `1a1b8b5a1167931afbf41ebaafbe76034e6357a0` |
+| `logos-cpp-sdk` | `3bf5365c5412f89bbbf30e3f46237cd68cff0599` |
+| `logos-module` | `ceee1e35649cc938c213515c672fa40df0a32469` |
+| `logos-modules-state-module` | `ed0f4ba534520542764775efc1d0ef705a02e616` |
+| `logos-nix` | `f55bf91b8a723ee5c27c39c773b034255538d280` |
+| `logos-package-manager` | `1c8ea4a84a310773968c7b338320f84d182278c1` |
+| `logos-plugin-qt` | `f9e969e7b62ffed543660024c62198b61894de9c` |
+| `logos-protocol` | `d8389858fe4fc9a91113bc8dd66721bf99699173` |
+| `logos-qt-sdk` | `b0c57af85a9600bfe29be536696863f002eb6bdd` |
+| `process-stats` | `5bff72cd99ad533885a3c64ae9c8fe65fbc9caf5` |
 
-The source checkout at `/tmp/logos-liblogos` was obtained by shallow `git clone` after the `opensrc` fetch failed in this environment (GitHub API rate limit, then a generic request error). Its `HEAD` was verified as the revision above. No fetched source was added to this repository.
+The root `nixpkgs` input follows `logos-nix/nixpkgs`, so its resolved revision is inherited from that input and is not a separate root lock node.
+
+The source checkout at `/tmp/logos-liblogos` was obtained by shallow `git clone` after the `opensrc` fetch failed in this environment (GitHub API rate limit, then a generic request error). Its `HEAD` was verified as the revision above. The root `flake.lock` was parsed to obtain its direct input pins. Source/build details were inspected in liblogos and the pinned default container and loader; the other direct inputs are revision-mapped here but were not individually audited for Android support. No fetched source was added to this repository.
 
 ## Android integration implications
 
-- There is no upstream Android target in the liblogos Nix system list and no Android NDK/Gradle instructions in the inspected runtime/default-container/default-loader build files.
+- There is no upstream Android target in the liblogos Nix system list and no Android NDK/Gradle instructions in the inspected liblogos, default-container, and default-loader build files. The remaining transitive/direct repositories have not each been independently audited for Android support, so their compatibility remains unknown.
 - The default execution model requires launching `logos_host_qt`/module processes and resolving native Qt plugins and dependent shared libraries. Android executable loading, executable file placement/permissions, dynamic linker lookup, Qt availability, and process supervision all need explicit experiments; desktop ELF support cannot establish these properties.
 - `logos-container-subprocess` uses POSIX process APIs. This is a portability concern to test against Android's Bionic libc and policy, not proof of failure by itself.
 - The liblogos build uses Qt 6 and additional native dependencies; a Rust Android target alone would not cross-build or package this C++ dependency graph.

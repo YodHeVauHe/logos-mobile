@@ -6,7 +6,7 @@ Assessment date: 2026-11-04. Status: **unverified; no Android build or runtime r
 
 | Area | Evidence | Assessment |
 |---|---|---|
-| Android ARM64 target | The pinned liblogos flake enumerates desktop Darwin/Linux systems and Windows, with no Android system, ABI, NDK, or API-level configuration. Official module-build prerequisites likewise do not list Android. | Android ARM64 support is not established. Linux `aarch64-linux` does not imply Android `aarch64-linux-android` support. |
+| Android ARM64 target | The pinned liblogos flake enumerates desktop Darwin/Linux systems and Windows, with no Android system, ABI, NDK, or API-level configuration. Official module-build prerequisites likewise do not list Android. The default container and loader build files inspected also lack Android configuration; other transitive repositories have not each been independently audited. | Android ARM64 support is not established. Linux `aarch64-linux` does not imply Android `aarch64-linux-android` support. |
 | Process model | Default container starts one OS process per module using Boost.Process v2; source includes POSIX `posix_spawn`, pipes, wait/termination logic, and Unix-domain-socket auth-token transfer. | Must prove process launch, child lifecycle and IPC on Android/Bionic. Android sandbox and app process ownership may constrain use. |
 | Module loading | Default loader launches a host executable that loads a Qt plugin. Runtime artifact closure includes Qt and transitive native libraries. | Must prove Qt module build, plugin ABI compatibility, linker search paths, and APK/AAB packaging. No Android recipe was found. |
 | Filesystem | Logos CLI currently uses a home-directory session (`~/.logosctl`); liblogos exposes a persistence base path and module directories. | Android integration must map state and modules to app-private storage and test path/permission behavior. Do not assume access to a conventional home directory. Android [app-specific storage guidance](https://developer.android.com/training/data-storage/app-specific) describes app-owned persistent/cache locations. |
@@ -15,7 +15,7 @@ Assessment date: 2026-11-04. Status: **unverified; no Android build or runtime r
 
 ## Current judgment
 
-The documented desktop runtime cannot yet be treated as an Android-ready dependency. Proceeding directly to a Rust supervisor or app shell would risk selecting an integration boundary before proving the C++ runtime, Qt plugin host, and module process model. Phase 0 should therefore recommend a gated follow-up experiment: first add or identify a supported Android build path for the runtime dependency closure; then package and run one real module in a foreground, user-visible session.
+The documented desktop runtime cannot yet be treated as an Android-ready dependency. Proceeding directly to a Rust supervisor or app shell would risk selecting an integration boundary before proving the C++ runtime, Qt plugin host, and module process model. Compatibility of uninspected transitive dependencies is unknown. Phase 0 should therefore recommend a gated follow-up experiment: first add or identify a supported Android build path for the runtime dependency closure; then package and run one real module in a foreground, user-visible session.
 
 This is a **no-go for claiming Android runtime integration now**, and a **go for a narrowly scoped compatibility experiment after the Android toolchain and build path are available**. It is not a claim that Android support is impossible.
 
