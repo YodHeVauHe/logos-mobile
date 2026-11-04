@@ -28,19 +28,23 @@ These are immutable Git revisions selected directly by the root node of the libl
 | `logos-module` | `ceee1e35649cc938c213515c672fa40df0a32469` |
 | `logos-modules-state-module` | `ed0f4ba534520542764775efc1d0ef705a02e616` |
 | `logos-nix` | `f55bf91b8a723ee5c27c39c773b034255538d280` |
+| `nixpkgs` (follows `logos-nix/nixpkgs`) | `e9f00bd893984bc8ce46c895c3bf7cac95331127` |
 | `logos-package-manager` | `1c8ea4a84a310773968c7b338320f84d182278c1` |
 | `logos-plugin-qt` | `f9e969e7b62ffed543660024c62198b61894de9c` |
 | `logos-protocol` | `d8389858fe4fc9a91113bc8dd66721bf99699173` |
 | `logos-qt-sdk` | `b0c57af85a9600bfe29be536696863f002eb6bdd` |
 | `process-stats` | `5bff72cd99ad533885a3c64ae9c8fe65fbc9caf5` |
 
-The root `nixpkgs` input follows `logos-nix/nixpkgs`, so its resolved revision is inherited from that input and is not a separate root lock node.
+The root `nixpkgs` input follows `logos-nix/nixpkgs`; the inherited resolved revision is recorded in the table.
+
+Evaluating `legacyPackages.x86_64-linux.qt6.qtbase.version` at this revision returns **Qt 6.9.2**, matching the `pkgs.qt6.qtbase` and `qtremoteobjects` packages used by liblogos. This is the host Nix Qt package version; it does not mean the locked Nix derivation contains Qt for Android.
 
 The source checkout at `/tmp/logos-liblogos` was obtained by shallow `git clone` after the `opensrc` fetch failed in this environment (GitHub API rate limit, then a generic request error). Its `HEAD` was verified as the revision above. The root `flake.lock` was parsed to obtain its direct input pins. Source/build details were inspected in liblogos and the pinned default container and loader; the other direct inputs are revision-mapped here but were not individually audited for Android support. No fetched source was added to this repository.
 
 ## Android integration implications
 
 - There is no upstream Android target in the liblogos Nix system list and no Android NDK/Gradle instructions in the inspected liblogos, default-container, and default-loader build files. The remaining transitive/direct repositories have not each been independently audited for Android support, so their compatibility remains unknown.
+- Qt 6.9's official Android matrix lists `arm64-v8a`, Android API 28–35, NDK r26b or r27c, JDK 17, and Gradle 8.10/AGP 8.6.0. The locked host Qt version is 6.9.2, but a compatible Qt Android package and an Android cross-build for Logos' other native dependencies have not been established. See [Qt 6.9 supported platforms](https://doc.qt.io/archives/qt-6.9/supported-platforms.html) and [Android NDK installation guidance](https://developer.android.com/studio/projects/install-ndk).
 - The default execution model requires launching `logos_host_qt`/module processes and resolving native Qt plugins and dependent shared libraries. Android executable loading, executable file placement/permissions, dynamic linker lookup, Qt availability, and process supervision all need explicit experiments; desktop ELF support cannot establish these properties.
 - `logos-container-subprocess` uses POSIX process APIs. This is a portability concern to test against Android's Bionic libc and policy, not proof of failure by itself.
 - The liblogos build uses Qt 6 and additional native dependencies; a Rust Android target alone would not cross-build or package this C++ dependency graph.
