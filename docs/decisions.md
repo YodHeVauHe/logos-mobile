@@ -16,6 +16,10 @@ This index links decisions to their evidence and current status. Proposed decisi
 
 ## Phase 0 decision
 
-Do not start an Android app shell or Rust supervisor yet. Issue [#3](https://github.com/YodHeVauHe/logos-mobile/issues/3) now isolates an Android ARM64 build/packaging spike for the pinned Logos runtime closure and a real module. The candidate and evidence gates are in [ADR-0001](adr/0001-logos-mobile-integration-boundary.md). No Android build was possible during Phase 0, and upstream does not declare an Android target in the inspected snapshot.
+Phase 0 established that Android runtime support must be verified before app execution or Logos process integration is claimed. The platform-independent Rust foundation is tracked by [issue #3](https://github.com/YodHeVauHe/logos-mobile/issues/3) and merged in PR #10; Android ARM64 dependency cross-build work is separately tracked by [issue #7](https://github.com/YodHeVauHe/logos-mobile/issues/7). The integration boundary and evidence gates are in [ADR-0001](adr/0001-logos-mobile-integration-boundary.md). No Android runtime build or execution is established by PR #10.
 
 Answers must cite official documentation, pinned source/configuration, or a recorded experiment. Unknowns remain marked as unknown until evidence resolves them.
+
+## Rust resource policy defaults
+
+`logos-mobile-core` requires callers to supply a `BudgetPolicy`. Phase 0 and the engineering specification do not establish verified module resource thresholds or device-specific safety factors, so the core does not provide numerical defaults or recommendations. Any future defaults require verified evidence and a separately reviewed change.

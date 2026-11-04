@@ -63,3 +63,8 @@ cargo fmt --all -- --check
 cargo test --workspace
 cargo clippy --workspace --all-targets -- -D warnings
 ```
+
+The Rust tests use synthetic in-memory profiles, budgets, and lifecycle events.
+They verify the policy contracts only; they are not platform mocks, Android
+measurements, emulator results, or real-device observations. No platform
+profiler implementation exists in this phase.

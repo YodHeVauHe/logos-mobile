@@ -8,7 +8,7 @@
 
 **Tech Stack:** Rust stable, standard library only for the initial core, Cargo workspace, unit tests.
 
-**Spec:** [Engineering specification](../../../logos-mobile-engineering-specification.md), [accepted integration-boundary ADR](../adr/0001-logos-mobile-integration-boundary.md), and [issue #3](https://github.com/YodHeVauHe/logos-mobile/issues/3).
+**Spec:** [Engineering specification](../../../logos-mobile-engineering-specification.md), [accepted integration-boundary ADR](../../adr/0001-logos-mobile-integration-boundary.md), and [issue #3](https://github.com/YodHeVauHe/logos-mobile/issues/3).
 
 ## Global Constraints
 
@@ -62,7 +62,7 @@
 
 - [x] Write tests for reserve subtraction, policy caps, stale/low-confidence inputs, thermal/battery derating, zero resources, and overflow-safe calculations.
 - [x] Run the budget tests and confirm they fail before implementation.
-- [x] Implement a pure calculation with explicit defaults and reasons; do not start or stop modules.
+- [x] Implement a pure calculation with caller-supplied policy and explicit reasons; do not invent default thresholds without verified evidence, and do not start or stop modules.
 - [x] Run the budget tests and confirm they pass, then run the crate test suite.
 - [x] Format and commit the budget module with issue #3 in the required commit format.
 
@@ -122,3 +122,7 @@
 ## Handoff boundary
 
 This plan completes only the platform-independent Rust foundation. It does not add Android UI/lifecycle adapters or control Logos processes. Android execution remains in issue #4, and the Android native dependency cross-build remains in issue #7.
+
+## Plan correction
+
+The original Task 2 wording requested explicit policy defaults, but Phase 0 and the engineering specification provide no verified Logos resource thresholds. The implementation therefore requires callers to provide `BudgetPolicy`; adding numerical defaults would invent recommendations. The architecture documentation and issue #3 record this boundary.

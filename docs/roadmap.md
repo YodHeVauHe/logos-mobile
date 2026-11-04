@@ -7,13 +7,14 @@ This roadmap summarizes the phase order and current status. Each phase issue is 
 | Phase | Issue | Status | Dependencies | Exit criteria |
 |---|---|---|---|---|
 | 0 — Repository foundation and Android feasibility | [#2](https://github.com/YodHeVauHe/logos-mobile/issues/2) | Complete; PRs #1 and #6 merged | None | Repository workflow, pinned Logos source/build inventory, Android compatibility assessment, experiment record, and proposed integration boundary are documented and reviewed. Android compatibility remains unverified. |
-| 1 — Android ARM64 Logos runtime build and packaging spike | [#3](https://github.com/YodHeVauHe/logos-mobile/issues/3) | Blocker reproduced; awaiting PR review | #2 | The pinned liblogos flake exports only desktop/Windows package systems; querying `aarch64-linux-android` fails at `flake.nix:101`. See [build experiment](research/android-build-experiment.md) and follow-up issue [#7](https://github.com/YodHeVauHe/logos-mobile/issues/7). |
-| 2 — Android execution foundation | [#4](https://github.com/YodHeVauHe/logos-mobile/issues/4) | Blocked | #3, #7 | The Android runtime package launches on an emulator and survives the defined lifecycle checks. The original Rust supervisor scope must be revisited against the Android build result. |
+| 1 — Rust mobile foundation | [#3](https://github.com/YodHeVauHe/logos-mobile/issues/3) | Implementation merged in PR #10; roadmap correction in progress | #2 | Platform-independent Rust capability profiling, resource budgeting, role assessment, lifecycle state machine, tests, and architecture docs are implemented. Android runtime support is not established by this phase. |
+| Enabling — Android ARM64 Logos runtime cross-build | [#7](https://github.com/YodHeVauHe/logos-mobile/issues/7) | In progress; Nix evaluation does not yet prove a package build | #3 | Establish a reproducible Android target dependency path for pinned Logos sources, or record a reproducible dependency-level blocker and separate upstream action. |
+| 2 — Android execution foundation | [#4](https://github.com/YodHeVauHe/logos-mobile/issues/4) | Blocked | #3, #7 | The Rust engine and verified Android runtime artifacts execute within the minimal Android app and meet the defined lifecycle acceptance checks. |
 | 3 — Real Logos runtime integration | [#5](https://github.com/YodHeVauHe/logos-mobile/issues/5) | Blocked | #4, #7 | At least one actual Logos module runs locally on Android. Blockchain synchronization is claimed only after the actual protocol integration and its evidence are verified. |
 
 ## Enabling follow-up
 
-- [Issue #7](https://github.com/YodHeVauHe/logos-mobile/issues/7) tracks adding or identifying a reproducible Android ARM64 build path for the pinned Logos dependency closure. It is blocked until issue #3 is reviewed and merged.
+- [Issue #7](https://github.com/YodHeVauHe/logos-mobile/issues/7) tracks adding or identifying a reproducible Android ARM64 build path for the pinned Logos dependency closure. It proceeds separately from the Rust foundation in #3 and must complete before Android execution/integration issues #4 and #5.
 
 ## Progress rules
 
