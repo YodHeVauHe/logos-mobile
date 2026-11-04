@@ -1,6 +1,6 @@
 # ADR-0001: Logos Mobile integration boundary
 
-- **Status:** Proposed; requires review in issue [#2](https://github.com/YodHeVauHe/logos-mobile/issues/2)
+- **Status:** Accepted for sequencing after Phase 0 PRs #1 and #6 merged; Android feasibility remains unverified
 - **Date:** 2026-11-04
 - **Decision owner:** Logos Mobile maintainers
 
@@ -22,11 +22,11 @@ Embedding `liblogos_core` and assuming its default child-process/Qt-plugin behav
 
 Do not select or implement a Rust-to-Logos API boundary yet. Keep Rust as a candidate for mobile lifecycle, resource policy, and app-to-runtime coordination, while treating the upstream Logos runtime and modules as the only source of protocol functionality. First resolve whether the existing runtime dependency closure can be built and packaged for Android, or identify the smallest upstream-compatible alternate boundary through a separately issued experiment.
 
-**Confidence:** medium that this is the right sequencing decision; low on Android feasibility because the decisive build/runtime experiment is unavailable. This ADR remains proposed until issue #2 review.
+**Confidence:** medium that this is the right sequencing decision; low on Android feasibility because the decisive build/runtime experiment is unavailable. The owner approved the sequencing by authorizing the Phase 0 merges and continuation to issue #3.
 
 ## Smallest next milestone proposal
 
-After issue #2 is reviewed, create or revise the next issue to cover only an Android ARM64 build and packaging spike for the pinned runtime closure. Acceptance evidence should include the exact SDK/NDK/Qt/CMake/API versions, successful `arm64-v8a` outputs for the runtime and one real module (initial candidate: `logos-capability-module` at `1a1b8b5a1167931afbf41ebaafbe76034e6357a0`), APK native artifact inventory, and a runtime launch/load observation on an emulator. If the build fails, preserve the first failing dependency and diagnostics and revise the architecture proposal. Keep this issue blocked until #2 is reviewed; do not start a Rust supervisor or broad UI work before it.
+Issue [#3](https://github.com/YodHeVauHe/logos-mobile/issues/3) reproduced the first blocker: the pinned liblogos Nix flake does not export an Android package target. Qt 6.9.2 itself supports Android `arm64-v8a`, but the Logos dependency closure has not been shown to cross-build. Follow-up [issue #7](https://github.com/YodHeVauHe/logos-mobile/issues/7) covers a concrete Android cross-build path. After #7, issue #4 can package/run the runtime on an emulator and issue #5 can validate the real module integration. Do not start a Rust supervisor or broad UI work before the native runtime path is proven.
 
 ## Consequences and unresolved questions
 
@@ -34,4 +34,4 @@ After issue #2 is reviewed, create or revise the next issue to cover only an And
 - Android API level, ABI build configuration, NDK/Qt versions, module packaging, linker paths, and process strategy remain unresolved.
 - A successful cross-build alone will not prove runtime execution; emulator and physical-device checks remain separate evidence levels.
 - Android background rules require explicit user-visible operation and lifecycle testing; continuous 24/7 availability is not a supported claim.
-- The next implementation issue must exist and be open before any spike work starts. Its PR must link that issue.
+- Any further implementation work must exist in an open issue before it starts; its PR must link that issue.
