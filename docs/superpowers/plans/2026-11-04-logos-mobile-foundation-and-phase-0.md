@@ -21,6 +21,7 @@
 - “Tests should distinguish mocked unit tests from real-device integration tests.”
 - “Reports must not present simulated results as proof of protocol integration.”
 - “Android background execution limits and manufacturer-specific process management mean uninterrupted 24/7 availability cannot be promised.”
+- Do not start work without an open GitHub issue. Every issue is addressed through one or more PRs linked to that issue; do not leave work outside an issue checklist.
 - Do not add runtime crates or Android app code until Phase 0 identifies a verified integration boundary and the user approves the next plan.
 
 ## Review Focus
