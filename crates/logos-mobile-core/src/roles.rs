@@ -124,30 +124,53 @@ pub fn assess_roles(
             reasons.push(RoleConstraint::BandwidthBudgetUnavailable);
         }
 
-        let requested_cpu = used_cpu.saturating_add(requirement.minimum_cpu_cores);
-        let requested_memory = used_memory.saturating_add(requirement.minimum_memory_bytes);
-        let requested_storage = used_storage.saturating_add(requirement.minimum_storage_bytes);
-        let requested_bandwidth = used_bandwidth.saturating_add(requirement.minimum_bandwidth_bps);
+        let requested_cpu = used_cpu.checked_add(requirement.minimum_cpu_cores);
+        let requested_memory = used_memory.checked_add(requirement.minimum_memory_bytes);
+        let requested_storage = used_storage.checked_add(requirement.minimum_storage_bytes);
+        let requested_bandwidth = used_bandwidth.checked_add(requirement.minimum_bandwidth_bps);
         let before_count = reasons.len();
-        if cpu.is_some_and(|available| requested_cpu > available) {
+        if requested_cpu.is_none()
+            || cpu
+                .zip(requested_cpu)
+                .is_some_and(|(available, requested)| requested > available)
+        {
             reasons.push(RoleConstraint::CpuBudgetInsufficient);
         }
-        if memory.is_some_and(|available| requested_memory > available) {
+        if requested_memory.is_none()
+            || memory
+                .zip(requested_memory)
+                .is_some_and(|(available, requested)| requested > available)
+        {
             reasons.push(RoleConstraint::MemoryBudgetInsufficient);
         }
-        if storage.is_some_and(|available| requested_storage > available) {
+        if requested_storage.is_none()
+            || storage
+                .zip(requested_storage)
+                .is_some_and(|(available, requested)| requested > available)
+        {
             reasons.push(RoleConstraint::StorageBudgetInsufficient);
         }
-        if bandwidth.is_some_and(|available| requested_bandwidth > available) {
+        if requested_bandwidth.is_none()
+            || bandwidth
+                .zip(requested_bandwidth)
+                .is_some_and(|(available, requested)| requested > available)
+        {
             reasons.push(RoleConstraint::BandwidthBudgetInsufficient);
         }
         if reasons.len() > before_count {
             reasons.push(RoleConstraint::CombinedWorkloadExceedsBudget);
         } else if reasons.is_empty() {
-            used_cpu = requested_cpu;
-            used_memory = requested_memory;
-            used_storage = requested_storage;
-            used_bandwidth = requested_bandwidth;
+            if let (Some(cpu), Some(memory), Some(storage), Some(bandwidth)) = (
+                requested_cpu,
+                requested_memory,
+                requested_storage,
+                requested_bandwidth,
+            ) {
+                used_cpu = cpu;
+                used_memory = memory;
+                used_storage = storage;
+                used_bandwidth = bandwidth;
+            }
         }
         let status = if reasons.is_empty() {
             RoleStatus::Recommended
@@ -293,6 +316,26 @@ mod tests {
                 .filter(|item| item.status == RoleStatus::Recommended)
                 .count(),
             2
+        );
+    }
+
+    #[test]
+    fn combined_resource_overflow_cannot_be_hidden_by_maximum_budget() {
+        let mut available = budget();
+        available.storage_bytes.amount = Some(u64::MAX);
+        let mut first = requirement(NodeRole::StorageProvider, verified());
+        first.minimum_storage_bytes = u64::MAX;
+        let mut second = requirement(NodeRole::DeliveryProvider, verified());
+        second.minimum_storage_bytes = 1;
+
+        let assessment = assess_roles(&available, &[first, second]);
+
+        assert_eq!(assessment[0].status, RoleStatus::Recommended);
+        assert_eq!(assessment[1].status, RoleStatus::Unavailable);
+        assert!(
+            assessment[1]
+                .reasons
+                .contains(&super::RoleConstraint::StorageBudgetInsufficient)
         );
     }
 }
