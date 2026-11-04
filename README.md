@@ -25,6 +25,13 @@ Phase 0 is tracked in [issue #2](https://github.com/YodHeVauHe/logos-mobile/issu
 
 See the [roadmap](docs/roadmap.md) for phase status and exit criteria, and the [engineering specification](logos-mobile-engineering-specification.md) for the proposed architecture and initial audit assignment.
 
+The platform-independent Rust workspace is rooted at `crates/logos-mobile-core`.
+It provides timestamped capability measurements, deterministic resource budgets,
+evidence-gated role assessment, and a pure node lifecycle state machine. These
+APIs are policy primitives only; they do not collect real device measurements,
+control Logos processes, or establish Android runtime support. See the [Rust
+core architecture](docs/architecture/rust-core.md) for the current contracts.
+
 ## Contributing
 
 All work starts from an open GitHub issue, and every pull request links to the issue it addresses. Work proceeds through issue checklists and reviewed pull requests; do not start a blocked phase. Read [CONTRIBUTING.md](CONTRIBUTING.md) and [AGENTS.md](AGENTS.md) before working.
