@@ -1,3 +1,4 @@
+// These public API checks use synthetic values; they do not read a device.
 use logos_mobile_core::lifecycle::{LifecycleEvent, NodeState, transition};
 use logos_mobile_core::profile::{Confidence, Measurement, MeasurementStatus};
 

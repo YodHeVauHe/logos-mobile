@@ -188,6 +188,7 @@ pub fn assess_roles(
 
 #[cfg(test)]
 mod tests {
+    // Budgets and requirements below are synthetic fixtures, not observations.
     use super::{
         Evidence, NodeRole, RoleRequirement, RoleStatus, WorkloadRequirements, assess_roles,
     };
@@ -316,6 +317,29 @@ mod tests {
                 .filter(|item| item.status == RoleStatus::Recommended)
                 .count(),
             2
+        );
+    }
+
+    #[test]
+    fn combined_workload_is_rejected_when_roles_only_fit_individually() {
+        let mut available = budget();
+        available.cpu_cores.amount = Some(3);
+        let first = requirement(NodeRole::StorageProvider, verified());
+        let second = requirement(NodeRole::DeliveryProvider, verified());
+
+        let assessment = assess_roles(&available, &[first, second]);
+
+        assert_eq!(assessment[0].status, RoleStatus::Recommended);
+        assert_eq!(assessment[1].status, RoleStatus::Unavailable);
+        assert!(
+            assessment[1]
+                .reasons
+                .contains(&super::RoleConstraint::CpuBudgetInsufficient)
+        );
+        assert!(
+            assessment[1]
+                .reasons
+                .contains(&super::RoleConstraint::CombinedWorkloadExceedsBudget)
         );
     }
 

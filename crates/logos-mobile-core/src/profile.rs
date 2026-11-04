@@ -163,6 +163,7 @@ pub trait Profiler {
 
 #[cfg(test)]
 mod tests {
+    // All values below are synthetic test fixtures, not platform observations.
     use super::{Confidence, Measurement, MeasurementStatus};
 
     #[test]

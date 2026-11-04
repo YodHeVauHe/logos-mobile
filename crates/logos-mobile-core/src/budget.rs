@@ -347,6 +347,7 @@ pub fn calculate_budget(
 
 #[cfg(test)]
 mod tests {
+    // All profiles below are synthetic test fixtures; no device adapter is run.
     use super::{
         BudgetLimitation, BudgetPolicy, BudgetedAmount, ResourceBudgetError, ThermalCpuFactors,
         calculate_budget,
