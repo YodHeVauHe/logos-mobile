@@ -154,6 +154,10 @@ pub trait Profiler {
     type Error: std::error::Error + Send + Sync + 'static;
 
     /// Collect one device snapshot. Adapters timestamp each sample when observed.
+    ///
+    /// # Errors
+    ///
+    /// Returns the adapter's error if the platform cannot collect a snapshot.
     fn collect(&self) -> Result<CapabilityProfile, Self::Error>;
 }
 
