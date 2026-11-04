@@ -71,15 +71,15 @@
 - Consumes: Approved repository foundation design and the supplied engineering specification.
 - Produces: The repository's contributor-facing scope, dual-license choice, issue/PR forms, and safety rules used by every later task.
 
-- [ ] **Step 1: Write the README with honest project status.** State that the project is in research and foundation setup, describe local Android Logos execution as the goal, link the roadmap and engineering specification, and say compatibility is not established yet.
-- [ ] **Step 2: Write contribution rules.** Require an issue checklist, branch `issue-<number>-<slug>`, focused PRs, verification evidence, and review before integration. Explain that research findings must label facts, assumptions, and unknowns.
-- [ ] **Step 3: Write agent rules.** Include the same issue scope and review requirements, conventional commit subjects with `Changes:` and `Verification:` bullet sections and no trailers, and prohibitions on committing keys, seeds, wallet data, credentials, or secrets.
-- [ ] **Step 4: Add full MIT and Apache-2.0 license texts.** Set the MIT notice to `Copyright (c) 2026 YodHeVauHe`; do not copy the LEZ Wallet copyright holder.
-- [ ] **Step 5: Add only confirmed ignore patterns.** Ignore Rust `target/`, Android/Gradle build output when applicable, IDE state, and `.env` or local secrets; do not ignore source or reproducibility artifacts.
-- [ ] **Step 6: Add a phase issue form.** Include fields for goal, in-scope work, out-of-scope work, dependencies, checklist, acceptance checks, and evidence. Mark each section required except dependencies.
-- [ ] **Step 7: Add a PR template.** Include linked issue, scope summary, completed checklist, verification commands/results, and evidence type (mock, host build, Android build, emulator, or real device).
-- [ ] **Step 8: Check links and whitespace.** Run `git diff --check`; open each relative README link and confirm it resolves to a file created in this plan.
-- [ ] **Step 9: Commit the foundation rules.** Use a conventional `docs:` subject and the required `Changes:` and `Verification:` body sections.
+- [x] **Step 1: Write the README with honest project status.** State that the project is in research and foundation setup, describe local Android Logos execution as the goal, link the roadmap and engineering specification, and say compatibility is not established yet.
+- [x] **Step 2: Write contribution rules.** Require an issue checklist, branch `issue-<number>-<slug>`, focused PRs, verification evidence, and review before integration. Explain that research findings must label facts, assumptions, and unknowns.
+- [x] **Step 3: Write agent rules.** Include the same issue scope and review requirements, conventional commit subjects with `Changes:` and `Verification:` bullet sections and no trailers, and prohibitions on committing keys, seeds, wallet data, credentials, or secrets.
+- [x] **Step 4: Add full MIT and Apache-2.0 license texts.** Set the MIT notice to `Copyright (c) 2026 YodHeVauHe`; do not copy the LEZ Wallet copyright holder.
+- [x] **Step 5: Add only confirmed ignore patterns.** Ignore Rust `target/`, Android/Gradle build output when applicable, IDE state, and `.env` or local secrets; do not ignore source or reproducibility artifacts.
+- [x] **Step 6: Add a phase issue form.** Include fields for goal, in-scope work, out-of-scope work, dependencies, checklist, acceptance checks, and evidence. Mark each section required except dependencies.
+- [x] **Step 7: Add a PR template.** Include linked issue, scope summary, completed checklist, verification commands/results, and evidence type (mock, host build, Android build, emulator, or real device).
+- [x] **Step 8: Check links and whitespace.** Run `git diff --check`; open each relative README link and confirm it resolves to a file created in this plan.
+- [x] **Step 9: Commit the foundation rules.** Use a conventional `docs:` subject and the required `Changes:` and `Verification:` body sections.
 
 **Acceptance:** A new contributor can determine the project status, how to propose work, what evidence a PR requires, and what must never be committed. The license texts are complete and name the selected holder consistently.
 
@@ -94,12 +94,12 @@
 - Consumes: Task 1's contribution rules and the approved Phase 0 scope.
 - Produces: The shared progress record and durable decision format used by later tasks.
 
-- [ ] **Step 1: Create the roadmap with Phase 0 as the active phase.** Include the engineering specification's discovery and feasibility work as a checklist; list later Rust foundation, Android execution, and real Logos integration phases as provisional, each with its stated exit criterion.
-- [ ] **Step 2: Add dependencies and status fields.** For each phase, record status, prerequisite, issue link (initially “not created”), and evidence required to mark it complete. Do not assign calendar dates without user-approved scheduling.
-- [ ] **Step 3: Create the decision index.** Include a short entry for the Android feasibility decision as pending evidence and link to `docs/adr/0001-logos-mobile-integration-boundary.md` once Task 6 creates it.
-- [ ] **Step 4: Define ADR structure.** Specify title, status, context, evidence, decision, alternatives, consequences, and open risks. State that superseded decisions remain linked rather than deleted.
-- [ ] **Step 5: Check that roadmap scope matches the source spec.** Confirm no roadmap entry claims that a runtime, Android target, or module is already compatible.
-- [ ] **Step 6: Commit the roadmap and decision index.** Use a conventional `docs:` subject and required commit body sections.
+- [x] **Step 1: Create the roadmap with Phase 0 as the active phase.** Summarize the engineering specification's discovery and feasibility deliverables and link Phase 0's detailed issue checklist; list later Rust foundation, Android execution, and real Logos integration phases with their stated exit criteria.
+- [x] **Step 2: Add dependencies and status fields.** For Phases 0–3, record the live issue URLs (#2–#5), current status, prerequisite issues, and evidence required to mark each phase complete. Keep Phases 1–3 blocked until their dependencies close. Do not assign calendar dates without user-approved scheduling.
+- [x] **Step 3: Create the decision index.** Include a short entry for the Android feasibility decision as pending evidence; Task 6 links the ADR after creating it.
+- [x] **Step 4: Define ADR structure.** Specify title, status, context, evidence, decision, alternatives, consequences, and open risks. State that superseded decisions remain linked rather than deleted.
+- [x] **Step 5: Check that roadmap scope matches the source spec.** Confirm no roadmap entry claims that a runtime, Android target, or module is already compatible.
+- [x] **Step 6: Commit the roadmap and decision index.** Use a conventional `docs:` subject and required commit body sections.
 
 **Acceptance:** Phase order and completion evidence are visible in one roadmap, and the decision index distinguishes pending research from accepted decisions.
 
@@ -117,7 +117,7 @@
 - [x] **Step 2: Create the Phase 1 Rust foundation issue.** Issue #3 records the workspace, profiler, resource budget, role assessment, lifecycle, tests, and documentation scope; it is blocked by completion of #2.
 - [x] **Step 3: Create the Phase 2 Android execution issue.** Issue #4 records Android ARM64 build, minimal app integration, lifecycle recovery, and persistence; it is blocked by #2 and #3.
 - [x] **Step 4: Create the Phase 3 Logos integration issue.** Issue #5 records actual runtime/module loading, local execution, conditional blockchain verification, resilience, and resource measurements; it is blocked by #2 and #4.
-- [ ] **Step 5: Link all four issue URLs and dependencies in the roadmap.** Add the URLs for #2–#5 after Task 2 creates `docs/roadmap.md`; submit the roadmap edit as a PR linked to #2.
+- [x] **Step 5: Verify the phase issue map in the roadmap.** Confirm it links to issues #2–#5 and records the dependency chain; submit any correction as a PR linked to #2.
 - [ ] **Step 6: Work one phase at a time through linked PRs.** Each PR references its phase issue, checks only completed items with evidence, and remains within that issue's scope. Do not start a blocked phase.
 - [ ] **Step 7: Close each phase issue only after review.** Verify its acceptance criteria against merged changes and recorded experiments, then update the roadmap and issue with the outcome and next eligible phase.
 
@@ -133,14 +133,14 @@
 - Consumes: The engineering specification's official references, Task 2's roadmap/decision format, and Task 3's tracking issue.
 - Produces: A versioned source map and build inventory that Task 5 uses to assess Android compatibility.
 
-- [ ] **Step 1: Start from the official Logos documentation index.** Read `https://docs.logos.co/llms.txt` and the relevant official sections named in the engineering specification: Logos overview, running a node, building/running a Logos Core module, and coding with agents.
-- [ ] **Step 2: Fetch and inspect the official `logos-co/logos-liblogos` source.** Use `npx opensrc logos-co/logos-liblogos` as directed by the repository's source-reference instructions, then record its source revision, purpose, runtime entry points, module model, build files, and stable source links. If it is already present under `opensrc/`, confirm its revision in `opensrc/sources.json` and inspect that copy.
-- [ ] **Step 3: Follow official source links to relevant runtimes and modules.** Add a repository only when official documentation or source establishes its relationship to the required runtime/module path. For each, record owner, URL, revision/tag, role, and evidence.
-- [ ] **Step 4: Inventory build inputs.** Record Rust toolchain files, Cargo workspaces and features, Nix/Gradle/CMake/other build definitions, native libraries, generated code, and required external toolchains found in the inspected repositories.
-- [ ] **Step 5: Inventory supported architectures and operating systems.** Quote or link the authoritative build configuration or CI matrix for each claimed target. Mark targets absent from source/config as unknown rather than inferred.
-- [ ] **Step 6: Record dependency provenance.** For every proposed dependency in the real execution path, record whether it is an upstream crate, system library, bundled library, or generated component, and the exact version/revision where pinned.
-- [ ] **Step 7: Cross-check source claims.** Verify every repository map entry against its upstream README/build configuration and every version against a tag, lockfile, or manifest.
-- [ ] **Step 8: Commit the source and build inventory.** Use a conventional `docs:` subject and required commit body sections.
+- [x] **Step 1: Start from the official Logos documentation index.** Read `https://docs.logos.co/llms.txt` and the relevant official sections named in the engineering specification: Logos overview, running a node, building/running a Logos Core module, and coding with agents.
+- [x] **Step 2: Fetch and inspect the official `logos-co/logos-liblogos` source.** `opensrc` failed due API rate limit/generic request error; a shallow clone fallback was inspected and its exact revision recorded. No source copy was added to this repository.
+- [x] **Step 3: Follow official source links to relevant runtimes and modules.** The source map includes the runtime, default container, default loader, contracts, SDKs and CLI context with revisions and links.
+- [x] **Step 4: Inventory build inputs.** Nix, CMake, C++17, Qt, Boost and relevant native/toolchain dependencies are documented; no Rust/Gradle Android layer exists in inspected upstream runtime source.
+- [x] **Step 5: Inventory supported architectures and operating systems.** Exact declared desktop/Windows system matrix is recorded; Android targets absent from source/config remain unverified.
+- [x] **Step 6: Record dependency provenance.** Lockfile revisions and provenance notes are recorded in the dependency/build inventory.
+- [x] **Step 7: Cross-check source claims.** Repository roles and pinned versions were checked against upstream READMEs, build files, and the liblogos lockfile.
+- [x] **Step 8: Commit the source and build inventory.** Commit uses the repository's required subject/body/verification structure.
 
 **Acceptance:** Another engineer can follow the source links and identify the exact runtime/module repositories, build entry points, native dependencies, pinned revisions, and known target support without relying on unsupported assumptions.
 
@@ -155,15 +155,15 @@
 - Consumes: Task 4's versioned source and build inventory.
 - Produces: An evidence-based compatibility assessment and reproducible experiment plan for Task 6.
 
-- [ ] **Step 1: Inspect official Android build guidance for each dependency.** Record NDK/Clang requirements, Rust Android targets, minimum Android API level, ABI, linker mode, native library constraints, and any dependency without Android guidance.
-- [ ] **Step 2: Compare Android ARM64 requirements to actual build targets.** For each runtime/module dependency, cite the exact configuration or CI result. Do not treat Linux `aarch64-unknown-linux-gnu` as Android support.
-- [ ] **Step 3: Trace the runtime's process and module model.** Determine from source whether modules run as child processes, shared libraries, in-process components, or another mechanism. Record required executable permissions, dynamic loading, linker behavior, IPC, and filesystem assumptions.
-- [ ] **Step 4: Assess Android app packaging and lifecycle boundaries.** Map required native artifacts into APK/AAB packaging, app-private storage needs, permissions, foreground service needs, process death, restart, and background limits. Separate documented platform behavior from tested device behavior.
-- [ ] **Step 5: Run the smallest reproducible Android build experiment supported by the evidence.** Use the exact upstream build path and selected Android ABI/API. Capture the source revision, tool versions, command, exit result, and any blocker in `docs/research/android-build-experiment.md`. If an upstream dependency cannot be built for Android, record the exact failing dependency and build output rather than substituting a mock.
-- [ ] **Step 6: Define the minimum real-module execution experiment.** Name the selected upstream module and pinned source revision; specify build commands, Android ABI/API, app packaging steps, launch procedure, expected local observable behavior, logs/artifacts to retain, and cleanup. If no module is viable based on evidence, define the experiment that would resolve the blocking uncertainty.
-- [ ] **Step 7: Label experiment evidence.** For each required observation, state whether it is source inspection, host build, Android cross-build, emulator execution, or real-device execution. Explicitly state what a mock can and cannot establish.
-- [ ] **Step 8: Record compatibility gaps and risks.** Include manufacturer-specific background behavior, native dependency blockers, linker/process restrictions, storage assumptions, and missing official support evidence.
-- [ ] **Step 9: Commit the compatibility report and experiment plan.** Use a conventional `docs:` subject and required commit body sections.
+- [x] **Step 1: Inspect official Android build guidance for each dependency.** No Android NDK/Clang/API/ABI configuration is documented in the inspected runtime path; this absence and relevant Android platform constraints are recorded.
+- [x] **Step 2: Compare Android ARM64 requirements to actual build targets.** The source map links exact upstream target configuration; Linux AArch64 is explicitly not treated as Android support.
+- [x] **Step 3: Trace the runtime's process and module model.** The subprocess container and Qt host/plugin loader behavior are described from pinned source.
+- [x] **Step 4: Assess Android app packaging and lifecycle boundaries.** APK dependencies, app-private storage, process death/restart and official background limits are recorded as requirements/unknowns, not test results.
+- [x] **Step 5: Run the smallest reproducible Android build experiment supported by the evidence.** Recorded as not run because the upstream target/toolchain and local SDK/NDK/adb prerequisites are absent; no desktop build is substituted for Android evidence.
+- [x] **Step 6: Define the minimum real-module execution experiment.** `logos-capability-module` and its pinned revision, build/package/run procedure, observable evidence, and lifecycle checks are specified, gated on an Android runtime build path.
+- [x] **Step 7: Label experiment evidence.** Source inspection is distinguished from host build, Android cross-build, emulator, real-device and mocked evidence.
+- [x] **Step 8: Record compatibility gaps and risks.** Process, linker, storage, background lifecycle and upstream support gaps are recorded.
+- [x] **Step 9: Commit the compatibility report and experiment plan.** Commit uses the repository's required subject/body/verification structure.
 
 **Acceptance:** The report supports a go/no-go recommendation for the smallest Android execution experiment and provides enough pinned information for another engineer to reproduce it. No Android compatibility claim exceeds the available evidence.
 
@@ -178,13 +178,13 @@
 - Consumes: Tasks 4 and 5's verified evidence and documented unknowns.
 - Produces: A reviewed integration boundary recommendation and the smallest proposed post-audit milestone.
 
-- [ ] **Step 1: Write the ADR context and evidence.** Link every compatibility statement to the source map, Android report, official docs, source revision, or recorded experiment.
-- [ ] **Step 2: Compare feasible integration boundaries.** Include only alternatives supported by inspected source, such as the actual Logos process model or an Android-compatible library/module boundary. For each, state tradeoffs and blockers; do not invent an upstream API.
-- [ ] **Step 3: State the recommendation and confidence.** Mark the ADR proposed until the Phase 0 review accepts it. If a required fact is missing, state the unresolved question and the experiment needed to answer it.
-- [ ] **Step 4: Propose one smallest next milestone.** Define its goal, in-scope behavior, acceptance evidence, and dependencies. Exclude broad UI work, contribution rewards, and unrelated services until local runtime execution is demonstrated.
-- [ ] **Step 5: Update the decision index and roadmap.** Link the ADR and reports, record evidence status, and leave Phase 0 incomplete until all exit criteria are satisfied and reviewed.
-- [ ] **Step 6: Review Phase 0 coverage.** Confirm repository map, dependency/build inventory, Android ARM64 assessment, process/module assessment, integration boundary, proof-of-concept plan, and unresolved-risk list are all present.
-- [ ] **Step 7: Commit the ADR and Phase 0 handoff.** Use a conventional `docs:` subject and required commit body sections.
+- [x] **Step 1: Write the ADR context and evidence.** Compatibility statements link to source maps/reports, official docs and pinned revisions.
+- [x] **Step 2: Compare feasible integration boundaries.** Alternatives are limited to the default runtime, the documented container seam, and the module-loader seam; unsupported Android APIs are not invented.
+- [x] **Step 3: State the recommendation and confidence.** ADR remains proposed pending issue #2 review and calls out unverified facts.
+- [x] **Step 4: Propose one smallest next milestone.** ADR proposes a separately tracked Android ARM64 runtime/module build and packaging spike after Phase 0 review.
+- [x] **Step 5: Update the decision index and roadmap.** ADR and evidence links are indexed; Phase 0 is marked ready for review, not complete.
+- [x] **Step 6: Review Phase 0 coverage.** All required research and experiment-plan artifacts are present; Android runtime evidence remains explicitly absent.
+- [x] **Step 7: Commit the ADR and Phase 0 handoff.** Commit uses the repository's required subject/body/verification structure.
 
 **Acceptance:** The ADR's recommendation follows from linked evidence, unknowns are visible, and the proposed next milestone is small enough for a separate approved implementation plan.
 

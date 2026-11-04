@@ -1,0 +1,30 @@
+# Rust
+/target/
+**/target/
+**/*.rs.bk
+
+# Android / Gradle generated files
+.gradle/
+**/.gradle/
+/local.properties
+/build/
+**/build/
+*.apk
+*.aab
+
+# IDE and operating system files
+.idea/
+.vscode/
+*.iml
+.DS_Store
+*.swp
+
+# Local secrets and wallet data
+.env
+.env.*
+!.env.example
+*.keystore
+*.jks
+*.seed
+*.wallet
+wallet_storage*

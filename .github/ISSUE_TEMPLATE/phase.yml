@@ -1,0 +1,61 @@
+name: Project phase
+description: Track one phase with a scoped checklist, dependencies, acceptance criteria, and evidence.
+title: "Phase: "
+labels: []
+assignees: []
+body:
+  - type: input
+    id: phase
+    attributes:
+      label: Phase
+      description: State the phase number and name.
+      placeholder: "Phase 0: Logos Android feasibility audit"
+    validations:
+      required: true
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: State the outcome this phase must deliver.
+      placeholder: Describe the intended outcome.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope checklist
+      description: List the concrete work items as Markdown checkboxes.
+      placeholder: "- [ ] First deliverable"
+    validations:
+      required: true
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Out of scope
+      description: State work that must remain in a separate issue or later phase.
+      placeholder: Describe exclusions.
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      description: Link prerequisite issues. Leave empty when there are none.
+    validations:
+      required: false
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: List observable conditions required before this issue can close.
+      placeholder: Describe measurable outcomes and evidence.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Verification evidence
+      description: State the commands, observations, or artifacts required to verify completion.
+      placeholder: Distinguish source inspection, mocks, host builds, Android builds, emulator runs, and real-device evidence.
+    validations:
+      required: true
