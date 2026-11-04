@@ -1,6 +1,7 @@
 //! Platform-independent policy and lifecycle primitives for Logos Mobile.
 
 pub mod budget;
+pub mod lifecycle;
 pub mod profile;
 pub mod roles;
 
