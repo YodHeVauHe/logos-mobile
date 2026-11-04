@@ -2,6 +2,7 @@
 
 pub mod budget;
 pub mod profile;
+pub mod roles;
 
 pub use profile::{
     Architecture, CapabilityProfile, Confidence, Measurement, MeasurementStatus, NetworkType,
