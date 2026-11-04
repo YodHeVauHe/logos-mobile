@@ -71,15 +71,15 @@
 - Consumes: Approved repository foundation design and the supplied engineering specification.
 - Produces: The repository's contributor-facing scope, dual-license choice, issue/PR forms, and safety rules used by every later task.
 
-- [ ] **Step 1: Write the README with honest project status.** State that the project is in research and foundation setup, describe local Android Logos execution as the goal, link the roadmap and engineering specification, and say compatibility is not established yet.
-- [ ] **Step 2: Write contribution rules.** Require an issue checklist, branch `issue-<number>-<slug>`, focused PRs, verification evidence, and review before integration. Explain that research findings must label facts, assumptions, and unknowns.
-- [ ] **Step 3: Write agent rules.** Include the same issue scope and review requirements, conventional commit subjects with `Changes:` and `Verification:` bullet sections and no trailers, and prohibitions on committing keys, seeds, wallet data, credentials, or secrets.
-- [ ] **Step 4: Add full MIT and Apache-2.0 license texts.** Set the MIT notice to `Copyright (c) 2026 YodHeVauHe`; do not copy the LEZ Wallet copyright holder.
-- [ ] **Step 5: Add only confirmed ignore patterns.** Ignore Rust `target/`, Android/Gradle build output when applicable, IDE state, and `.env` or local secrets; do not ignore source or reproducibility artifacts.
-- [ ] **Step 6: Add a phase issue form.** Include fields for goal, in-scope work, out-of-scope work, dependencies, checklist, acceptance checks, and evidence. Mark each section required except dependencies.
-- [ ] **Step 7: Add a PR template.** Include linked issue, scope summary, completed checklist, verification commands/results, and evidence type (mock, host build, Android build, emulator, or real device).
-- [ ] **Step 8: Check links and whitespace.** Run `git diff --check`; open each relative README link and confirm it resolves to a file created in this plan.
-- [ ] **Step 9: Commit the foundation rules.** Use a conventional `docs:` subject and the required `Changes:` and `Verification:` body sections.
+- [x] **Step 1: Write the README with honest project status.** State that the project is in research and foundation setup, describe local Android Logos execution as the goal, link the roadmap and engineering specification, and say compatibility is not established yet.
+- [x] **Step 2: Write contribution rules.** Require an issue checklist, branch `issue-<number>-<slug>`, focused PRs, verification evidence, and review before integration. Explain that research findings must label facts, assumptions, and unknowns.
+- [x] **Step 3: Write agent rules.** Include the same issue scope and review requirements, conventional commit subjects with `Changes:` and `Verification:` bullet sections and no trailers, and prohibitions on committing keys, seeds, wallet data, credentials, or secrets.
+- [x] **Step 4: Add full MIT and Apache-2.0 license texts.** Set the MIT notice to `Copyright (c) 2026 YodHeVauHe`; do not copy the LEZ Wallet copyright holder.
+- [x] **Step 5: Add only confirmed ignore patterns.** Ignore Rust `target/`, Android/Gradle build output when applicable, IDE state, and `.env` or local secrets; do not ignore source or reproducibility artifacts.
+- [x] **Step 6: Add a phase issue form.** Include fields for goal, in-scope work, out-of-scope work, dependencies, checklist, acceptance checks, and evidence. Mark each section required except dependencies.
+- [x] **Step 7: Add a PR template.** Include linked issue, scope summary, completed checklist, verification commands/results, and evidence type (mock, host build, Android build, emulator, or real device).
+- [x] **Step 8: Check links and whitespace.** Run `git diff --check`; open each relative README link and confirm it resolves to a file created in this plan.
+- [x] **Step 9: Commit the foundation rules.** Use a conventional `docs:` subject and the required `Changes:` and `Verification:` body sections.
 
 **Acceptance:** A new contributor can determine the project status, how to propose work, what evidence a PR requires, and what must never be committed. The license texts are complete and name the selected holder consistently.
 
@@ -94,12 +94,12 @@
 - Consumes: Task 1's contribution rules and the approved Phase 0 scope.
 - Produces: The shared progress record and durable decision format used by later tasks.
 
-- [ ] **Step 1: Create the roadmap with Phase 0 as the active phase.** Include the engineering specification's discovery and feasibility work as a checklist; list later Rust foundation, Android execution, and real Logos integration phases as provisional, each with its stated exit criterion.
-- [ ] **Step 2: Add dependencies and status fields.** For each phase, record status, prerequisite, issue link (initially “not created”), and evidence required to mark it complete. Do not assign calendar dates without user-approved scheduling.
-- [ ] **Step 3: Create the decision index.** Include a short entry for the Android feasibility decision as pending evidence and link to `docs/adr/0001-logos-mobile-integration-boundary.md` once Task 6 creates it.
-- [ ] **Step 4: Define ADR structure.** Specify title, status, context, evidence, decision, alternatives, consequences, and open risks. State that superseded decisions remain linked rather than deleted.
-- [ ] **Step 5: Check that roadmap scope matches the source spec.** Confirm no roadmap entry claims that a runtime, Android target, or module is already compatible.
-- [ ] **Step 6: Commit the roadmap and decision index.** Use a conventional `docs:` subject and required commit body sections.
+- [x] **Step 1: Create the roadmap with Phase 0 as the active phase.** Summarize the engineering specification's discovery and feasibility deliverables and link Phase 0's detailed issue checklist; list later Rust foundation, Android execution, and real Logos integration phases with their stated exit criteria.
+- [x] **Step 2: Add dependencies and status fields.** For Phases 0–3, record the live issue URLs (#2–#5), current status, prerequisite issues, and evidence required to mark each phase complete. Keep Phases 1–3 blocked until their dependencies close. Do not assign calendar dates without user-approved scheduling.
+- [x] **Step 3: Create the decision index.** Include a short entry for the Android feasibility decision as pending evidence; Task 6 links the ADR after creating it.
+- [x] **Step 4: Define ADR structure.** Specify title, status, context, evidence, decision, alternatives, consequences, and open risks. State that superseded decisions remain linked rather than deleted.
+- [x] **Step 5: Check that roadmap scope matches the source spec.** Confirm no roadmap entry claims that a runtime, Android target, or module is already compatible.
+- [x] **Step 6: Commit the roadmap and decision index.** Use a conventional `docs:` subject and required commit body sections.
 
 **Acceptance:** Phase order and completion evidence are visible in one roadmap, and the decision index distinguishes pending research from accepted decisions.
 
@@ -117,7 +117,7 @@
 - [x] **Step 2: Create the Phase 1 Rust foundation issue.** Issue #3 records the workspace, profiler, resource budget, role assessment, lifecycle, tests, and documentation scope; it is blocked by completion of #2.
 - [x] **Step 3: Create the Phase 2 Android execution issue.** Issue #4 records Android ARM64 build, minimal app integration, lifecycle recovery, and persistence; it is blocked by #2 and #3.
 - [x] **Step 4: Create the Phase 3 Logos integration issue.** Issue #5 records actual runtime/module loading, local execution, conditional blockchain verification, resilience, and resource measurements; it is blocked by #2 and #4.
-- [ ] **Step 5: Link all four issue URLs and dependencies in the roadmap.** Add the URLs for #2–#5 after Task 2 creates `docs/roadmap.md`; submit the roadmap edit as a PR linked to #2.
+- [x] **Step 5: Verify the phase issue map in the roadmap.** Confirm it links to issues #2–#5 and records the dependency chain; submit any correction as a PR linked to #2.
 - [ ] **Step 6: Work one phase at a time through linked PRs.** Each PR references its phase issue, checks only completed items with evidence, and remains within that issue's scope. Do not start a blocked phase.
 - [ ] **Step 7: Close each phase issue only after review.** Verify its acceptance criteria against merged changes and recorded experiments, then update the roadmap and issue with the outcome and next eligible phase.
 
