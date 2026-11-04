@@ -1,6 +1,6 @@
 # Rust Mobile Foundation Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Implement a deterministic, platform-independent Rust core for device profiles, resource budgets, role assessments, and node lifecycle transitions.
 
@@ -43,11 +43,11 @@
 - Consumes: verified Phase 0 constraints; no Android or Logos runtime API.
 - Produces: `CapabilityProfile`, `Measurement<T>`, `Confidence`, typed thermal/network/architecture data, and `Profiler` collection boundary.
 
-- [ ] Write tests for fresh, stale, missing, low-confidence, and zero-valued measurements; verify current-age results use an explicit clock input.
-- [ ] Run the profile tests and confirm they fail because the API is not implemented.
-- [ ] Implement validated typed profile measurements and a `Profiler` trait returning a complete snapshot or a typed collection error.
-- [ ] Run the profile tests and confirm they pass.
-- [ ] Run `cargo fmt --check` and `cargo test -p logos-mobile-core`; commit with issue #3 in the required commit format.
+- [x] Write tests for fresh, stale, missing, low-confidence, and zero-valued measurements; verify current-age results use an explicit clock input.
+- [x] Run the profile tests and confirm they fail because the API is not implemented.
+- [x] Implement validated typed profile measurements and a `Profiler` trait returning a complete snapshot or a typed collection error.
+- [x] Run the profile tests and confirm they pass.
+- [x] Run `cargo fmt --check` and `cargo test -p logos-mobile-core`; commit with issue #3 in the required commit format.
 
 ## Task 2: Implement deterministic resource-budget calculation
 
@@ -60,11 +60,11 @@
 - Consumes: Task 1 `CapabilityProfile` and measurement freshness/confidence API.
 - Produces: `BudgetPolicy`, `ResourceBudget`, per-resource limitation reasons, and pure `calculate_budget(profile, policy, now)`.
 
-- [ ] Write tests for reserve subtraction, policy caps, stale/low-confidence inputs, thermal/battery derating, zero resources, and overflow-safe calculations.
-- [ ] Run the budget tests and confirm they fail before implementation.
-- [ ] Implement a pure calculation with explicit defaults and reasons; do not start or stop modules.
-- [ ] Run the budget tests and confirm they pass, then run the crate test suite.
-- [ ] Format and commit the budget module with issue #3 in the required commit format.
+- [x] Write tests for reserve subtraction, policy caps, stale/low-confidence inputs, thermal/battery derating, zero resources, and overflow-safe calculations.
+- [x] Run the budget tests and confirm they fail before implementation.
+- [x] Implement a pure calculation with explicit defaults and reasons; do not start or stop modules.
+- [x] Run the budget tests and confirm they pass, then run the crate test suite.
+- [x] Format and commit the budget module with issue #3 in the required commit format.
 
 ## Task 3: Implement evidence-gated role assessment
 
@@ -77,12 +77,12 @@
 - Consumes: Task 1 profiles and Task 2 budgets.
 - Produces: role identifiers from the specification, explicit requirement provenance, deterministic `RoleAssessment`, and reasons for unavailable/not-recommended roles.
 
-- [ ] Write tests for verified versus unverified requirements, missing requirements, budget shortfalls, deterministic ordering, and combinations of multiple roles.
-- [ ] Add a specific test proving `ConsensusEligible` is never recommended from hardware/resource fit alone without independent verified protocol-eligibility evidence.
-- [ ] Run role tests and confirm they fail before implementation.
-- [ ] Implement assessment from supplied requirements and provenance only; include no invented Logos protocol thresholds or default role requirements.
-- [ ] Run role tests and confirm they pass; run all crate tests.
-- [ ] Format and commit role assessment with issue #3 in the required commit format.
+- [x] Write tests for verified versus unverified requirements, missing requirements, budget shortfalls, deterministic ordering, and combinations of multiple roles.
+- [x] Add a specific test proving `ConsensusEligible` is never recommended from hardware/resource fit alone without independent verified protocol-eligibility evidence.
+- [x] Run role tests and confirm they fail before implementation.
+- [x] Implement assessment from supplied requirements and provenance only; include no invented Logos protocol thresholds or default role requirements.
+- [x] Run role tests and confirm they pass; run all crate tests.
+- [x] Format and commit role assessment with issue #3 in the required commit format.
 
 ## Task 4: Implement the node lifecycle state machine
 
@@ -95,12 +95,12 @@
 - Consumes: no process or runtime integration; state is updated only by explicit events.
 - Produces: `NodeState`, `LifecycleEvent`, `TransitionError`, and pure `transition(state, event)`.
 
-- [ ] Write transition tests for start, successful startup, health degradation/recovery, stop, startup failure, runtime failure, and explicit recovery/restart.
-- [ ] Test invalid events from each state and verify they do not mutate the input state.
-- [ ] Run lifecycle tests and confirm they fail before implementation.
-- [ ] Implement a deterministic transition table with typed invalid-transition errors and no side effects.
-- [ ] Run lifecycle tests and confirm they pass; run all crate tests.
-- [ ] Format and commit lifecycle state machine with issue #3 in the required commit format.
+- [x] Write transition tests for start, successful startup, health degradation/recovery, stop, startup failure, runtime failure, and explicit recovery/restart.
+- [x] Test invalid events from each state and verify they do not mutate the input state.
+- [x] Run lifecycle tests and confirm they fail before implementation.
+- [x] Implement a deterministic transition table with typed invalid-transition errors and no side effects.
+- [x] Run lifecycle tests and confirm they pass; run all crate tests.
+- [x] Format and commit lifecycle state machine with issue #3 in the required commit format.
 
 ## Task 5: Document public contracts and verify the workspace
 
@@ -113,11 +113,11 @@
 - Consumes: completed public APIs from Tasks 1–4.
 - Produces: documented engine limits, evidence requirements, and review-ready issue #3 deliverables.
 
-- [ ] Document workspace layout, measurement freshness, deterministic budgeting, evidence-gated roles, lifecycle transitions, and platform/runtime boundaries.
-- [ ] Confirm docs do not claim actual device profiling, Android execution, Logos runtime control, or protocol eligibility.
-- [ ] Run `cargo fmt --check`, `cargo test --workspace`, `cargo clippy --workspace --all-targets -- -D warnings`, and local Markdown link/whitespace checks.
-- [ ] Update issue #3 checklist items with only the work in this PR and record exact command output.
-- [ ] Commit final docs and verification record with issue #3 in the required commit format.
+- [x] Document workspace layout, measurement freshness, deterministic budgeting, evidence-gated roles, lifecycle transitions, and platform/runtime boundaries.
+- [x] Confirm docs do not claim actual device profiling, Android execution, Logos runtime control, or protocol eligibility.
+- [x] Run `cargo fmt --check`, `cargo test --workspace`, `cargo clippy --workspace --all-targets -- -D warnings`, and local Markdown link/whitespace checks.
+- [x] Update issue #3 checklist items with only the work in this PR and record exact command output.
+- [x] Commit final docs and verification record with issue #3 in the required commit format.
 
 ## Handoff boundary
 
