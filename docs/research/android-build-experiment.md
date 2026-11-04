@@ -11,6 +11,14 @@ Date: 2026-11-04. Outcome: **Android build blocked at the upstream flake target 
 - Source result: liblogos `flake.nix` names `x86_64-linux`, `aarch64-linux`, `x86_64-darwin`, `aarch64-darwin`, and a Windows package target. It does not declare `aarch64-linux-android` or any Android cross toolchain/API configuration.
 - Locked host Qt result: Nixpkgs revision `e9f00bd893984bc8ce46c895c3bf7cac95331127` resolves `pkgs.qt6.qtbase.version` to `6.9.2`. Qt's official 6.9 matrix supports Android `arm64-v8a`, API 28–35, NDK r26b/r27c, JDK 17, and Gradle 8.10/AGP 8.6.0. This covers Qt's supported configuration only, not the Logos dependency closure.
 
+The Qt version was queried directly from the pinned Nixpkgs input with:
+
+```sh
+nix eval --raw 'github:NixOS/nixpkgs/e9f00bd893984bc8ce46c895c3bf7cac95331127#legacyPackages.x86_64-linux.qt6.qtbase.version'
+```
+
+Exit: `0`. Output: `6.9.2`.
+
 ## Attempt and result
 
 The pinned flake's declared systems were queried with:
